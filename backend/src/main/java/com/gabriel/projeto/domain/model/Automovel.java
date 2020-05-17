@@ -1,5 +1,7 @@
 package com.gabriel.projeto.domain.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,10 +10,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.sun.istack.NotNull;
+
 @Entity
 public class Automovel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@NotBlank
@@ -22,11 +26,10 @@ public class Automovel {
 	@Size(max = 60)
 	private String modelo;
 	
-	@NotBlank
+	@NotNull
 	@Column(name="valorvenda")
-	private double valorVenda;
+	private BigDecimal valorVenda;
 	
-	@NotBlank
 	private boolean vendido;
 	
 	public Long getId() {
@@ -47,10 +50,10 @@ public class Automovel {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public double getValorVenda() {
+	public BigDecimal getValorVenda() {
 		return valorVenda;
 	}
-	public void setValorVenda(double valorVenda) {
+	public void setValorVenda(BigDecimal valorVenda) {
 		this.valorVenda = valorVenda;
 	}
 	
