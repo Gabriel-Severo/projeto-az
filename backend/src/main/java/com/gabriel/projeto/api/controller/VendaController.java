@@ -2,6 +2,7 @@ package com.gabriel.projeto.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import com.gabriel.projeto.domain.exception.AutomovelVendidoException;
 import com.gabriel.projeto.domain.model.Automovel;
 import com.gabriel.projeto.domain.repository.AutomovelRepository;
 
+@CrossOrigin
 @RestController
 public class VendaController {
 	
