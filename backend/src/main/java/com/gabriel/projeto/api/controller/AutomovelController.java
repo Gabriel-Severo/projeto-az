@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gabriel.projeto.domain.model.Automovel;
 import com.gabriel.projeto.domain.repository.AutomovelRepository;
+import com.gabriel.projeto.domain.service.AutomovelService;
 
 @RestController
 @RequestMapping("/automoveis")
 public class AutomovelController {
 	
+	@Autowired
+	private AutomovelService automovelService;
 	
 	@Autowired
 	private AutomovelRepository automovelRepository;
@@ -35,7 +38,6 @@ public class AutomovelController {
 	@GetMapping("/{automovelId}")
 	public ResponseEntity<Automovel> buscar(@PathVariable Long automovelId) {
 		Optional<Automovel> automovel = automovelRepository.findById(automovelId);
-		
 		if(automovel.isPresent()){
 			return ResponseEntity.ok(automovel.get());
 		}
@@ -54,7 +56,7 @@ public class AutomovelController {
 			return ResponseEntity.notFound().build();
 		}
 		automovel.setId(automovelId);
-		automovel = automovelRepository.save(automovel);
+		automovel = automovelService.adicionar(automovel);
 		return ResponseEntity.ok(automovel);
 	}
 	
@@ -63,7 +65,7 @@ public class AutomovelController {
 		if(!automovelRepository.existsById(automovelId)) {
 			return ResponseEntity.notFound().build();
 		}
-		automovelRepository.deleteById(automovelId);
+		automovelService.excluir(automovelId);
 		return ResponseEntity.noContent().build();
 	}
 }
