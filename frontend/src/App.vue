@@ -25,4 +25,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+</style>

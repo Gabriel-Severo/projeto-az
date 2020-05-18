@@ -1,30 +1,37 @@
 <template>
   <div class="automoveis">
     <div class="automovel-classificao">
+      <h3>Id</h3>
       <h3>Marca</h3>
       <h3>Modelo</h3>
       <h3>Valor</h3>
     </div>
-    <div v-for="(automovel, x) in automoveis" :key=x class="automovel-box">
-      <span> {{ automovel.marca }} </span>
-      <span> {{ automovel.modelo}} </span>
-      <span> {{ automovel.valorVenda.toFixed(2) }} </span>
-      <button>Vender</button>
-      <button>Atualizar</button>
-      <button>Excluir</button>
-    </div>
+    <Automovel v-for="(automovel, x) in nvendidos" :key=x :automovel=automovel :getNVendidos=getNVendidos.bind(this) />
   </div>
 </template>
 
 <script>
+import Automovel from './Automovel.vue'
 export default {
   name: 'Automoveis',
+  data: () => ({nvendidos: []}),
   props: {
     automoveis: Array,
     getDados: Function
   },
-  mounted(){
-    this.getDados()
+  components: {
+    Automovel
+  },
+  methods: {
+    async getNVendidos(){
+      await this.getDados()
+      this.nvendidos = this.automoveis.filter(automovel => {
+        return !automovel.vendido
+      })
+    }
+  },
+  async mounted(){
+    await this.getNVendidos()
   }
 }
 </script>
@@ -32,17 +39,12 @@ export default {
 <style scoped>
 .automoveis {
   border: 1px solid black;
-  width: 500px;
+  width: 48vw;
   height: 300px;
   overflow: auto;
 }
-
-.automovel-box, .automovel-classificao {
+.automovel-classificao {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.automovel-box {
-  border: 1px solid rgba(0, 0, 0, 0.2)
+  grid-template-columns: repeat(7, 1fr);
 }
 </style>
