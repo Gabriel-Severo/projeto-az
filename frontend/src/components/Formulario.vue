@@ -3,9 +3,11 @@
         <form @submit.prevent="handleSubmit">
             <label for="marca">Marca</label><input v-model="marca" id="marca" name="marca" type="text" required>
             <label for="modelo">Modelo</label><input v-model="modelo" id="modelo" name="modelo" type="text" required>
-            <label for="valorvenda">Valor</label><input v-model="valorVenda" id="valorvenda" name="valorvenda" type="number" step="0.01" required>
-            <button type="submit">Salvar</button>
-            <button @click="handleReset" type="reset">Cancelar</button>
+            <label for="valorvenda">Valor</label><input v-model="valorVenda" id="valorvenda" name="valorvenda" type="number" step="0.01" min="1" required>
+            <div class="formulario-btn">
+                <button type="submit">Salvar</button>
+                <button @click="handleReset" type="reset">Cancelar</button>
+            </div>
         </form>
     </div>
 </template>
@@ -32,7 +34,6 @@ export default {
             }else{
                 const automovel = {marca: this.marca, modelo: this.modelo, valorVenda: this.valorVenda}
                 await axios.put(`http://localhost:8080/automoveis/${this.id}`, automovel)
-                this.id = null
             }
             this.handleReset()
             await this.getDados()
@@ -45,6 +46,7 @@ export default {
             this.valorVenda = automovel.valorVenda
             this.id = automovel.id
         })
+        this.$root.$on('reset', this.handleReset)
     }
 }
 </script>
@@ -59,8 +61,31 @@ export default {
 .formulario form {
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 .formulario input {
-    border: 1px solid #dfdfdf;
+    border: 1px solid #0008;
+    height: 24px;
+    border-radius: 3px;
+}
+.formulario-btn {
+    width: 170px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.formulario-btn button {
+    width: 80px;
+    height: 100%;
+    border-radius: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.formulario-btn button:nth-child(1) {
+    background-color: #0908;
+}
+.formulario-btn button:nth-child(2) {
+    background-color: #9008;
 }
 </style>
