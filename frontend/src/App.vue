@@ -59,4 +59,12 @@ export default {
   "c c";
   margin: 10px;
 }
+@media (max-width: 960px) {
+  #app {
+    grid-template-areas:
+    "a"
+    "b"
+    "c";
+  }
+}
 </style>

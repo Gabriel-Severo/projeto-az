@@ -1,10 +1,13 @@
 <template>
     <div class="vendidos">
-        <div v-for="(automovel, x) in automoveis" :key=x class="venda">
-            <span>ID: {{ automovel.id }}</span>
-            <span>Marca: {{ automovel.marca }}</span>
-            <span>Modelo: {{ automovel.modelo }}</span>
-            <span>Valor: R$ {{ automovel.valorVenda }}</span>
+        <h3>Automóveis vendidos</h3>
+        <div class="vendidos-box">
+            <div v-for="(automovel, x) in automoveis" :key=x class="venda">
+                <span>ID: {{ automovel.id }}</span>
+                <span>Marca: {{ automovel.marca }}</span>
+                <span>Modelo: {{ automovel.modelo }}</span>
+                <span>Valor: R$ {{ automovel.valorVenda }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -21,6 +24,8 @@ export default {
 <style scoped>
 .vendidos {
     grid-area: c;
+}
+.vendidos-box {
     width: 97.3vw;
     height: 300px;
     border: 1px solid black;
@@ -35,5 +40,11 @@ export default {
     border-bottom: 1px solid black;
     display: flex;
     flex-direction: column;
+}
+@media (max-width: 960px) {
+    .vendidos-box {
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 </style>

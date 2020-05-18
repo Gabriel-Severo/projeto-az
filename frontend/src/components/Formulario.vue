@@ -1,5 +1,6 @@
 <template>
     <div class="formulario">
+        <h3>Atualizar/Cadastrar automóvel</h3>
         <form @submit.prevent="handleSubmit">
             <label for="marca">Marca</label><input v-model="marca" id="marca" name="marca" type="text" required>
             <label for="modelo">Modelo</label><input v-model="modelo" id="modelo" name="modelo" type="text" required>
@@ -57,11 +58,11 @@ export default {
     height: 300px;
     border: 1px solid black;
     grid-area: b;
+    padding: 10px;
 }
 .formulario form {
     display: flex;
     flex-direction: column;
-    padding: 10px;
 }
 .formulario input {
     border: 1px solid #0008;
@@ -87,5 +88,11 @@ export default {
 }
 .formulario-btn button:nth-child(2) {
     background-color: #9008;
+}
+@media (max-width: 960px) {
+    .formulario {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
 </style>

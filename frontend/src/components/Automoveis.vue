@@ -1,5 +1,6 @@
 <template>
   <div class="automoveis">
+    <h3>Automóveis a venda</h3>
     <div class="automovel-classificao">
       <h3>Id</h3>
       <h3>Marca</h3>
@@ -38,5 +39,10 @@ export default {
 .automovel-classificao {
   display: grid;
   grid-template-columns: 0.5fr 2fr 2fr 2fr 1fr 1fr 1fr;
+}
+@media (max-width: 960px) {
+    .automoveis {
+        width: 100%;
+    }
 }
 </style>
