@@ -18,22 +18,22 @@ export default {
     name: 'Automovel',
     props: {
         automovel: Object,
-        getNVendidos: Function
+        getDados: Function
     },
     methods: {
         async handleVender(automovel){
             if(confirm(`Você tem certeza que deseja vender o automóvel\nMarca: ${automovel.marca}\nModelo: ${automovel.modelo}?`))
                 await axios.get(`http://localhost:8080/venda/${automovel.id}`)
-                await this.getNVendidos()
+                await this.getDados()
         },
         async handleExcluir(automovel){
             if(confirm(`Você tem certeza que deseja excluir o automóvel\nMarca: ${automovel.marca}\nModelo: ${automovel.modelo}?`))
             await axios.delete(`http://localhost:8080/automoveis/${automovel.id}`)
-            await this.getNVendidos()
+            await this.getDados()
         }
     },
     async mounted(){
-        await this.getNVendidos()
+        await this.getDados()
     }
 }
 </script>

@@ -6,7 +6,7 @@
       <h3>Modelo</h3>
       <h3>Valor</h3>
     </div>
-    <Automovel v-for="(automovel, x) in nvendidos" :key=x :automovel=automovel :getNVendidos=getNVendidos.bind(this) />
+    <Automovel v-for="(automovel, x) in automoveis" :key=x :automovel=automovel :getDados=getDados.bind(this) />
   </div>
 </template>
 
@@ -14,7 +14,6 @@
 import Automovel from './Automovel.vue'
 export default {
   name: 'Automoveis',
-  data: () => ({nvendidos: []}),
   props: {
     automoveis: Array,
     getDados: Function
@@ -31,7 +30,7 @@ export default {
     }
   },
   async mounted(){
-    await this.getNVendidos()
+    await this.getDados()
   }
 }
 </script>
