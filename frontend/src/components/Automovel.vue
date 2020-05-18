@@ -4,7 +4,7 @@
             <span> {{ automovel.id }} </span>
             <span> {{ automovel.marca }} </span>
             <span> {{ automovel.modelo}} </span>
-            <span> {{ automovel.valorVenda.toFixed(2) }} </span>
+            <span> R$ {{ automovel.valorVenda.toFixed(2) }} </span>
             <button @click="handleVender(automovel)">Vender</button>
             <button @click="handleAtualizar(automovel)">Atualizar</button>
             <button @click="handleExcluir(automovel)">Excluir</button>
@@ -44,7 +44,7 @@ export default {
 <style scoped>
 .automovel-box, .automovel-classificao {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: 0.5fr 2fr 2fr 2fr 1fr 1fr 1fr;
 }
 
 .automovel-box {

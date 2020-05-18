@@ -19,23 +19,23 @@ export default {
         getDados: Function
     },
     methods: {
-        handleReset(event){
-            event.target.parentElement.reset()
+        handleReset(){
+            this.marca = null
+            this.modelo = null
+            this.valorVenda = null
             this.id = null
         },
-        async handleSubmit(event) {
+        async handleSubmit() {
             if(!this.id){
                 const automovel = {marca: this.marca, modelo: this.modelo, valorVenda: this.valorVenda}
                 await axios.post(`http://localhost:8080/automoveis`, automovel)
-                await this.getDados()
-                event.target.reset()
             }else{
                 const automovel = {marca: this.marca, modelo: this.modelo, valorVenda: this.valorVenda}
                 await axios.put(`http://localhost:8080/automoveis/${this.id}`, automovel)
-                await this.getDados()
-                event.target.reset()
                 this.id = null
             }
+            this.handleReset()
+            await this.getDados()
         },
     },
     mounted(){
@@ -54,6 +54,7 @@ export default {
     width: 48vw;
     height: 300px;
     border: 1px solid black;
+    grid-area: b;
 }
 .formulario form {
     display: flex;

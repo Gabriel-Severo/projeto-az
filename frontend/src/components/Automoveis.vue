@@ -33,9 +33,10 @@ export default {
   width: 48vw;
   height: 300px;
   overflow: auto;
+  grid-area: a;
 }
 .automovel-classificao {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: 0.5fr 2fr 2fr 2fr 1fr 1fr 1fr;
 }
 </style>
