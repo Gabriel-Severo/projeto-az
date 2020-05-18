@@ -12,7 +12,7 @@ import axios from 'axios'
 
 export default {
   name: 'App',
-  data: () => ({automoveis: [], nvendidos: []}),
+  data: () => ({automoveis: [], nvendidos: [], atualizarVeiculo: null}),
   methods: {
     async getDados(){
       this.automoveis = await axios.get("http://localhost:8080/automoveis").then(value => value.data)

@@ -21,14 +21,6 @@ export default {
   components: {
     Automovel
   },
-  methods: {
-    async getNVendidos(){
-      await this.getDados()
-      this.nvendidos = this.automoveis.filter(automovel => {
-        return !automovel.vendido
-      })
-    }
-  },
   async mounted(){
     await this.getDados()
   }

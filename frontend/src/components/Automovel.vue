@@ -6,7 +6,7 @@
             <span> {{ automovel.modelo}} </span>
             <span> {{ automovel.valorVenda.toFixed(2) }} </span>
             <button @click="handleVender(automovel)">Vender</button>
-            <button>Atualizar</button>
+            <button @click="handleAtualizar(automovel)">Atualizar</button>
             <button @click="handleExcluir(automovel)">Excluir</button>
         </div>
     </div>
@@ -21,6 +21,9 @@ export default {
         getDados: Function
     },
     methods: {
+        async handleAtualizar(automovel){
+            this.$root.$emit('atualizar', automovel)
+        },
         async handleVender(automovel){
             if(confirm(`Você tem certeza que deseja vender o automóvel\nMarca: ${automovel.marca}\nModelo: ${automovel.modelo}?`))
                 await axios.get(`http://localhost:8080/venda/${automovel.id}`)
