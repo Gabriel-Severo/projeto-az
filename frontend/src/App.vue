@@ -1,16 +1,26 @@
 <template>
   <div id="app">
-    <Veiculos msg="Welcome to Your Vue.js App"/>
+    <Automoveis :automoveis="automoveis" :getDados="getDados.bind(this)"/>
   </div>
 </template>
 
 <script>
-import Veiculos from './components/Veiculos.vue'
+import Automoveis from './components/Automoveis.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
+  data: () => ({automoveis: []}),
+  methods: {
+    async getDados(){
+      this.automoveis = await axios.get("http://localhost:8080/automoveis").then(value => value.data)
+    }
+  },
   components: {
-    Veiculos
+    Automoveis
+  },
+  async mounted() {
+    await this.getDados()
   }
 }
 </script>
