@@ -6,7 +6,7 @@
                 <span>ID: {{ automovel.id }}</span>
                 <span>Marca: {{ automovel.marca }}</span>
                 <span>Modelo: {{ automovel.modelo }}</span>
-                <span>Valor: R$ {{ automovel.valorVenda }}</span>
+                <span>Valor: R$ {{ automovel.valorVenda.toFixed(2) }}</span>
             </div>
         </div>
     </div>
@@ -33,9 +33,9 @@ export default {
     overflow: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 80px;
 }
 .venda {
-    height: 80px;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     display: flex;
